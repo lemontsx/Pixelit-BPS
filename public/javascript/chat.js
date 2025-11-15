@@ -22,7 +22,7 @@ function ge(id) {
 
 let messages = [];
 let username, pfp, badges, userRole;
-let filteredWords = []; // Will be populated from the server
+let filteredWords = []; 
 
 function getRoleColor(role) {
   const roleColors = {
