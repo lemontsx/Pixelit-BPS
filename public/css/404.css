@@ -66,20 +66,25 @@ body {
   }
 }
 
-.title {
-  font-size: 245px;
-  margin: 0px;
-  color: #ffffff;
+.title_p {
+  margin-left: 92%;
+  position: absolute;
+  top: 0.5%;
+  font-size: 26px;
+  color: #fff;
+  text-shadow: #000 1px 0 13px;
 }
 
 @media screen and (max-width: 600px) {
-  .title {
-    font-size: 75px;
-    margin: 0px;
-    color: #ffffff;
+  .title_p {
+    margin-left: 80%;
+    position: absolute;
+    top: 0.5%;
+    font-size: 24px;
+    color: #fff;
+    text-shadow: #000 1px 0 13px;
   }
 }
-
 .description {
   font-size: 1.5em;
   margin: 20px 0;
