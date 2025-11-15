@@ -22,6 +22,7 @@ function ge(id) {
 
 let messages = [];
 let username, pfp, badges, userRole;
+let filteredWords = []; // Will be populated from the server
 
 function getRoleColor(role) {
   const roleColors = {
@@ -39,6 +40,17 @@ function getRoleColor(role) {
   };
   return roleColors[role] || '#ffffff';
 }
+
+fetch('/filteredWords.json')
+  .then(response => response.json())
+  .then(data => {
+    filteredWords = data.words || [];
+    console.log('Filtered words loaded:', filteredWords.length, 'words');
+  })
+  .catch(error => {
+    console.error('Error loading filtered words:', error);
+    filteredWords = [];
+  });
 
 fetch("/user", {
   method: 'GET',
@@ -236,7 +248,6 @@ document.addEventListener('DOMContentLoaded', function() {
   console.info("Chat service initialized and connection established.");
 
   const sendInput = ge("send");
-  const filteredWords = ["nigger", "nigga", "chink", "tranny", "faggot", "nga"];
   let lastMessageTime = 0;
 
   sendInput.addEventListener("keydown", (e) => {
@@ -271,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
       };
 
       const lowerCaseMessage = msg.toLowerCase();
-      const containsFilteredWord = filteredWords.some(word => lowerCaseMessage.includes(word));
+      const containsFilteredWord = filteredWords.some(word => lowerCaseMessage.includes(word.toLowerCase()));
 
       if (containsFilteredWord) {
         alert("Your message has been flagged for inappropriate content and has been logged in the audit logs for staff to review.");
