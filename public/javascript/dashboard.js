@@ -126,13 +126,13 @@ fetch("/user")
 
     }
     if (user.role === "Moderator") {
-      usernameElement.style.color = "#ab53c4";
-      ge("role").style.color = "#ab53c4";
+      usernameElement.style.color = "#db57ffff";
+      ge("role").style.color = "#db57ffff";
 
     }
     if (user.role === "Admin") {
-      usernameElement.style.color = "#dc6dc1";
-      ge("role").style.color = "#dc6dc1";
+      usernameElement.style.color = "#e92626ff";
+      ge("role").style.color = "#e92626ff";
 
     }
     if (user.role === "Community Manager") {
