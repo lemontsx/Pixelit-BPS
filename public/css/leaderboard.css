@@ -60,7 +60,7 @@ body {
 .title_p {
   margin-left: 92%;
   position: absolute;
-  top: 1%;
+  top: 0.5%;
   font-size: 26px;
   color: #fff;
   text-shadow: #000 1px 0 13px;
@@ -70,13 +70,12 @@ body {
   .title_p {
     margin-left: 80%;
     position: absolute;
-    top: 0.7%;
-    font-size: 18px;
+    top: 0.5%;
+    font-size: 24px;
     color: #fff;
     text-shadow: #000 1px 0 13px;
   }
 }
-
 .leaderboard_Container {
   width: 75%;
   height: 700px;
