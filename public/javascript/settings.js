@@ -17,6 +17,48 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Theme selector wiring: render buttons and hook into global theme API
+document.addEventListener('DOMContentLoaded', function () {
+    try {
+        const themeContainer = document.getElementById('theme-section');
+        if (!themeContainer) return;
+        const themes = (window.__SITE_THEMES && window.__SITE_THEMES.length) ? window.__SITE_THEMES : [
+            { key: 'violet', name: 'Violet' },
+            { key: 'ocean', name: 'Ocean' },
+            { key: 'sunset', name: 'Sunset' },
+            { key: 'forest', name: 'Forest' },
+            { key: 'midnight', name: 'Midnight' }
+        ];
+
+        function render() {
+            themeContainer.querySelectorAll('.theme-btn').forEach(n=>n.remove());
+            const current = localStorage.getItem('siteTheme') || (window.getTheme ? window.getTheme() : 'violet');
+            themes.forEach(t => {
+                const btn = document.createElement('button');
+                btn.className = 'theme-btn';
+                btn.textContent = t.name;
+                btn.dataset.theme = t.key;
+                if (t.key === current) btn.classList.add('active');
+                btn.addEventListener('click', function(){
+                    try{ if(window.setTheme) window.setTheme(t.key); } catch(e){}
+                    localStorage.setItem('siteTheme', t.key);
+                    render();
+                });
+                themeContainer.appendChild(btn);
+            });
+        }
+
+        // initial render
+        render();
+
+        // respond to external changes
+        window.addEventListener('siteThemeChanged', function(){ render(); });
+    } catch (e) {
+        console.error('Theme UI init error', e);
+    }
+});
+
+
 if (localStorage.loggedin == "true") {
     sessionStorage = localStorage;
 }
